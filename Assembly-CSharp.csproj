@@ -48,9 +48,9 @@
   <ItemGroup>
      <Compile Include="Assets\CutSheet.cs" />
      <Compile Include="Assets\MakeObjects.cs" />
-     <Compile Include="Assets\ObjectbehaviorScripts\EnemyScript.cs" />
-     <Compile Include="Assets\ObjectbehaviorScripts\ItemScript.cs" />
-     <Compile Include="Assets\ObjectbehaviorScripts\StaticScript.cs" />
+     <Compile Include="Assets\ObjectbehaviorScripts\EnemyBehaviour.cs" />
+     <Compile Include="Assets\ObjectbehaviorScripts\ItemBehaviour.cs" />
+     <Compile Include="Assets\ObjectbehaviorScripts\StaticBehaviour.cs" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\NoiseEffectShaderRGB.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_DepthOfField\SeparableWeightedBlurDof34.shader" />

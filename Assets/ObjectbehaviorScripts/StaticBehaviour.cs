@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class StatisScript : MonoBehaviour {
+public class StaticBehaviour : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

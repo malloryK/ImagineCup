@@ -12,7 +12,7 @@ public class CutSheet : MonoBehaviour
 
 	/// The background color to ignore
 	public Color backGroundColor = Color.white;
-	
+
 	// Use this for initialization
 	void Start()
 	{
@@ -27,7 +27,11 @@ public class CutSheet : MonoBehaviour
 		
 		// Extract sprites as individual textures:
 		Texture2D[] Sprites = GetSprites(inputTex, Islands);
-//		Directory.CreateDirectory(Application.dataPath + "/sprites/");
+		print (Sprites.Length);
+		foreach (Texture2D tex in Sprites){
+			MakeObjects.Instance.CreateGOFromTexture2D (tex);
+		}
+		//		Directory.CreateDirectory(Application.dataPath + "/sprites/");
 //		for (int i = 0; i < Sprites.Length; i++)
 //		{
 //			byte[] bytes = Sprites[i].EncodeToPNG();
@@ -83,7 +87,7 @@ public class CutSheet : MonoBehaviour
 		for (int i = 0; i < Islands.Length; i++)
 		{
 			if (pix[i] == backGroundColor){
-				pix[i][3]=0;
+				pix[i] = Color.clear;
 				Islands[i] = -1;
 			}
 			else{

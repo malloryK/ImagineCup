@@ -3,28 +3,49 @@ using System.Collections;
 
 public class MakeObjects : MonoBehaviour{
 
-	GameObject CreateEnemyFromSprite(Texture2D tex){
-		GameObject go = CreateGOFromSprite (tex);
-		go.tag = "enemy";
+	private static MakeObjects _instance;
+	public static MakeObjects Instance
+	{
+		get
+		{
+			if (!_instance)
+			{
+				_instance = (MakeObjects)GameObject.FindObjectOfType(typeof(MakeObjects));
+				if (!_instance)
+				{
+					GameObject container = new GameObject();
+					_instance = container.AddComponent(typeof(MakeObjects)) as MakeObjects;
+				}
+			}
+			
+			return _instance;
+		}
+	}
+	
+	public GameObject MakeGOaEnemy(GameObject go){
+		go.AddComponent<EnemyBehaviour>();
+		go.tag = "Enemy";
 		return go;
 	}
+	
+	public GameObject MakeGOaItem(GameObject go){
+		go.AddComponent<ItemBehaviour>();
 
-	GameObject CreateItemFromSprite(Texture2D tex){
-		 GameObject go = CreateGOFromSprite (tex);
 		go.tag = "Item";
 		return go;
 	}
 
-	GameObject CreateStaticFromSprite(Texture2D tex){
-		GameObject go = CreateGOFromSprite (tex);
+	public GameObject MakeGOaStatic(GameObject go){
+		go.AddComponent<ItemBehaviour>();
 		go.tag = "Static";
 		return go;
 	}
 
-	GameObject CreateGOFromSprite(Texture2D tex ){
+	public GameObject CreateGOFromTexture2D(Texture2D tex ){
 		GameObject newObj = Instantiate(gameObject) as GameObject;
-		
-		SpriteRenderer renderer =  newObj.GetComponent<SpriteRenderer>();
+
+		SpriteRenderer renderer = new SpriteRenderer ();
+		renderer = newObj.AddComponent("SpriteRenderer") as SpriteRenderer;
 		Sprite sprite = new Sprite();
 		sprite = Sprite.Create(tex,new Rect(0, 0, tex.width, tex.height),new Vector2(tex.width/2,tex.height/2));
 		renderer.sprite = sprite;
