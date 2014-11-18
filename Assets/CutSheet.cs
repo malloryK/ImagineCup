@@ -7,7 +7,7 @@ using System.IO;
 public class CutSheet : MonoBehaviour
 {   
 
-	/// An sprite sheet from which to cut
+	/// A sheet from which to cut
 	public Texture2D inputTex;
 
 	/// The background color to ignore
@@ -19,28 +19,13 @@ public class CutSheet : MonoBehaviour
 
 		List<int[]> Islands = CutSpriteSheet(inputTex);
 
-		// Render the sprite sheet with highlighting:
-//		MeshRenderer Mr = GetComponent<MeshRenderer>();
-//		Mr.material.mainTexture = DisplayTex;
-//		DisplayTex.wrapMode = TextureWrapMode.Clamp;
-//		DisplayTex.Apply(true);
-		
 		// Extract sprites as individual textures:
 		Texture2D[] Sprites = GetSprites(inputTex, Islands);
 		print (Sprites.Length);
 		foreach (Texture2D tex in Sprites){
 			MakeObjects.Instance.CreateGOFromTexture2D (tex);
 		}
-		//		Directory.CreateDirectory(Application.dataPath + "/sprites/");
-//		for (int i = 0; i < Sprites.Length; i++)
-//		{
-//			byte[] bytes = Sprites[i].EncodeToPNG();
-//			FileStream file = File.Open(Application.dataPath + "/sprites/sprite" + i + ".png", FileMode.Create);
-//			BinaryWriter bw = new BinaryWriter(file);
-//			bw.Write(bytes);
-//			file.Close();
-//		}
-		print("done");
+
 	}
 	
 
@@ -184,13 +169,7 @@ public class CutSheet : MonoBehaviour
 					}
 				}
 			}
-			
-			// What you do with this information now is up to you, for now I'll print it to the console:
-			print("-----");
-			print("Island ID: " + Island_IDs[i]);
-			print("Top left corner:     " + x_min + ", " + y_min);
-			print("Bottom right corner: " + x_max + ", " + y_max);
-			
+
 			// Also output as an array of coordinates
 			output.Add(new int[] { x_min, y_min, x_max, y_max });
 		}
